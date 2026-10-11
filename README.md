@@ -30,7 +30,7 @@ It's super easy! Just follow these steps:
 
 1. **Clone this repository** to your computer:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/Weather_Prediction_Model.git
+   git clone git clone https://github.com/riteshh-01/Weather_Prediction_Model.git
    ```
 2. **Open the folder** in your terminal:
    ```bash
