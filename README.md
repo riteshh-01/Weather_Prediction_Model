@@ -8,7 +8,7 @@ Have you ever looked at the temperature and wind speed and wondered, *"Is it a '
 
 ## 📸 A Peek at the Magic
 
-![Dynamic Weather Result](wp.png)
+![Dynamic Weather Result](wpss.png)
 *The app reacts to the forecast with fun animations and cozy suggestions.*
 
 ---
