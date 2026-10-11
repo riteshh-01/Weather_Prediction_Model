@@ -12,7 +12,7 @@ st.set_page_config(
     layout="centered"
 )
 
-# --- Custom Animation & Background Generators ---
+
 
 def change_bg(url):
     """Injects CSS to dynamically change the background image with a smooth override"""
@@ -37,7 +37,7 @@ def create_rain():
         position: fixed;
         top: -10vh;
         font-size: 1.5rem;
-        z-index: 9999;
+        z-index: 9999; /* Kept in front to look like drops on the screen */
         animation: rain-fall linear forwards;
     }
     @keyframes rain-fall {
@@ -60,7 +60,7 @@ def create_clouds():
         position: fixed;
         left: -15vw;
         font-size: 4rem;
-        z-index: 9999;
+        z-index: 0; /* Pushed behind the glass form */
         animation: cloud-drift linear forwards;
         opacity: 0.85;
     }
@@ -84,7 +84,7 @@ def create_sun():
     <style>
     .sun-wrapper {
         position: fixed;
-        z-index: 9999;
+        z-index: 0; /* FIXED: Pushed to the background layer */
         animation: sun-rise 2.5s ease-out forwards;
     }
     .css-sun {
@@ -147,6 +147,8 @@ div[data-testid="stForm"] {
     padding: 25px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative; /* Ensures z-index works */
+    z-index: 10; /* Keeps form above the sun/clouds */
 }
 
 /* Bright white labels for the sliders */
@@ -179,6 +181,8 @@ div[data-testid="stAlert"] {
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
     border-radius: 10px !important;
     box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.3) !important;
+    position: relative; /* Ensures z-index works */
+    z-index: 10; /* Keeps alerts above the sun/clouds */
 }
 div[data-testid="stAlert"] p {
     color: #ffffff !important;
@@ -191,7 +195,7 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 st.markdown('<p class="main-title">🌤️ Weather Forecaster</p>', unsafe_allow_html=True)
 st.markdown('<p class="sub-title">Slide the dials below to set the atmospheric conditions.</p>', unsafe_allow_html=True)
 
-# The form with interactive sliders
+
 with st.form("weather_form"):
     col1, col2 = st.columns(2)
 
@@ -232,7 +236,7 @@ if submit_btn:
                 
                 prediction_lower = str(res).lower()
                 
-                # Dynamic Backgrounds + Animations based on prediction
+                
                 if "rain" in prediction_lower or "drizzle" in prediction_lower:
                     change_bg("https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?q=80&w=2000&auto=format&fit=crop")
                     create_rain() 
